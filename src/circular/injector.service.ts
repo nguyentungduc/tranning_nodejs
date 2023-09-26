@@ -1,7 +1,7 @@
 // sử dụng moduleRef
 import { ModuleRef } from '@nestjs/core';
 import { Injectable } from '@nestjs/common';
-import { UserService } from './auth.service';
+import { UserService } from './user.service';
 
 @Injectable()
 export class AuthService {

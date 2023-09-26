@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { UserService } from './auth.service';
-import { AuthService } from './use.service';
+import { UserService } from './user.service';
+import { AuthService } from './auth.service';
 
 @Injectable()
 export class LazyLoaderService {
