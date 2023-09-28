@@ -18,6 +18,11 @@ import regex from './config/regex.config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './users/user.entity';
 import { CacheModule } from '@nestjs/cache-manager';
+import { ScheduleModule } from '@nestjs/schedule';
+import { TasksService } from './tasks/tasks.service';
+import { TasksModule } from './tasks/tasks.module';
+import { AudioModule } from './audio/audio.module';
+import { BullModule } from '@nestjs/bull';
 
 @Module({
   imports: [
@@ -42,6 +47,15 @@ import { CacheModule } from '@nestjs/cache-manager';
       synchronize: true,
     }),
     CacheModule.register(),
+    ScheduleModule.forRoot(),
+    TasksModule,
+    BullModule.forRoot({
+      redis: {
+        host: 'localhost',
+        port: 6379,
+      },
+    }),
+    AudioModule,
   ],
   controllers: [AppController, PostController],
   providers: [
