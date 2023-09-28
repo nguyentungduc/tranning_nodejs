@@ -23,6 +23,8 @@ import { TasksService } from './tasks/tasks.service';
 import { TasksModule } from './tasks/tasks.module';
 import { AudioModule } from './audio/audio.module';
 import { BullModule } from '@nestjs/bull';
+import { OrdersModule } from './orders/orders.module';
+import { EventEmitterModule } from '@nestjs/event-emitter';
 
 @Module({
   imports: [
@@ -56,6 +58,8 @@ import { BullModule } from '@nestjs/bull';
       },
     }),
     AudioModule,
+    OrdersModule,
+    EventEmitterModule.forRoot()
   ],
   controllers: [AppController, PostController],
   providers: [
