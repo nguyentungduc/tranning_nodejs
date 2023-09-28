@@ -4,8 +4,6 @@ import { AppService } from './app.service';
 import { PostController } from './post/post.controller';
 import { PostService } from './post/post.service';
 import { CatsModule } from './cats/cats.module';
-import { AuthModule } from './auth/auth.module';
-import { UsersModule } from './users/users.module';
 import { CommonService } from './common/common.service';
 import { ScopeModule } from './scope/scope.module';
 import { TransientService } from './scope/transient.service';
@@ -16,10 +14,8 @@ import { ConfigModule } from '@nestjs/config';
 import configuration from './config/configuration';
 import regex from './config/regex.config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './users/user.entity';
 import { CacheModule } from '@nestjs/cache-manager';
 import { ScheduleModule } from '@nestjs/schedule';
-import { TasksService } from './tasks/tasks.service';
 import { TasksModule } from './tasks/tasks.module';
 import { AudioModule } from './audio/audio.module';
 import { BullModule } from '@nestjs/bull';
@@ -30,8 +26,6 @@ import { SeeModule } from './see/see.module';
 @Module({
   imports: [
     CatsModule,
-    AuthModule,
-    UsersModule,
     ScopeModule,
     CircularModule,
     ConfigModule.forRoot({
@@ -46,7 +40,6 @@ import { SeeModule } from './see/see.module';
       username: 'root',
       password: 'mysql',
       database: 'test',
-      entities: [User],
       synchronize: true,
     }),
     CacheModule.register(),
