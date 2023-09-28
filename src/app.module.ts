@@ -25,6 +25,7 @@ import { AudioModule } from './audio/audio.module';
 import { BullModule } from '@nestjs/bull';
 import { OrdersModule } from './orders/orders.module';
 import { EventEmitterModule } from '@nestjs/event-emitter';
+import { SeeModule } from './see/see.module';
 
 @Module({
   imports: [
@@ -59,7 +60,8 @@ import { EventEmitterModule } from '@nestjs/event-emitter';
     }),
     AudioModule,
     OrdersModule,
-    EventEmitterModule.forRoot()
+    EventEmitterModule.forRoot(),
+    SeeModule
   ],
   controllers: [AppController, PostController],
   providers: [

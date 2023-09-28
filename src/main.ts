@@ -7,6 +7,7 @@ async function bootstrap() {
   console.log(process.env);
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     abortOnError: false,
+    forceCloseConnections: true,
     // logger: console,
   });
   app.useGlobalPipes(
@@ -14,6 +15,7 @@ async function bootstrap() {
       transform: true,
     }),
   );
+  app.enableShutdownHooks();
   // app.setGlobalPrefix('v1');
 
   // app.enableVersioning({
