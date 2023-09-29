@@ -24,6 +24,7 @@ import { EventEmitterModule } from '@nestjs/event-emitter';
 import { SeeModule } from './see/see.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
+import { AuthorizationModule } from './authorization/authorization.module';
 
 @Module({
   imports: [
@@ -57,8 +58,9 @@ import { UsersModule } from './users/users.module';
     OrdersModule,
     EventEmitterModule.forRoot(),
     SeeModule,
+    UsersModule,
+    AuthorizationModule,
     AuthModule,
-    UsersModule
   ],
   controllers: [AppController, PostController],
   providers: [

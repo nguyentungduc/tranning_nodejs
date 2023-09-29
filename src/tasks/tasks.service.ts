@@ -15,8 +15,8 @@ export class TasksService {
     //   this.logger.debug('Called every 10 seconds');
     // }
   
-    @Timeout(5000)
-    handleTimeout() {
-      this.logger.debug('Called once after 5 seconds');
-    }
+    // @Timeout(5000)
+    // handleTimeout() {
+    //   this.logger.debug('Called once after 5 seconds');
+    // }
 }
