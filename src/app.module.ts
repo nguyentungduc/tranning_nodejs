@@ -4,7 +4,6 @@ import { AppService } from './app.service';
 import { PostController } from './post/post.controller';
 import { PostService } from './post/post.service';
 import { CatsModule } from './cats/cats.module';
-import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { CommonService } from './common/common.service';
 import { ScopeModule } from './scope/scope.module';
@@ -30,7 +29,6 @@ import { SeeModule } from './see/see.module';
 @Module({
   imports: [
     CatsModule,
-    AuthModule,
     UsersModule,
     ScopeModule,
     CircularModule,

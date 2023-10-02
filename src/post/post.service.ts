@@ -1,6 +1,5 @@
 import { Injectable, Scope } from '@nestjs/common';
 
-@Injectable({ scope: Scope.TRANSIENT })
 export class PostService {
   private data: string[] = [];
   private static instanceCount = 0;
