@@ -1,17 +1,26 @@
-import { Inject, Injectable, forwardRef } from '@nestjs/common';
-import { CommonService } from 'src/common/common.service';
+import { Injectable } from '@nestjs/common';
+import { CreateCatDto } from './dto/create-cat.dto';
+import { UpdateCatDto } from './dto/update-cat.dto';
 
 @Injectable()
 export class CatsService {
-//   constructor(
-//     @Inject(forwardRef(() => CommonService))
-//     private commonService: CommonService,
-//   ) {}
+  create(createCatDto: CreateCatDto) {
+    return 'This action adds a new cat';
+  }
 
-  getCat(): any {
-    return {
-      cat_id: 1,
-      cat_name: 'cat name',
-    };
+  findAll() {
+    return `This action returns all cats`;
+  }
+
+  findOne(id: number) {
+    return `This action returns a #${id} cat`;
+  }
+
+  update(id: number, updateCatDto: UpdateCatDto) {
+    return `This action updates a #${id} cat`;
+  }
+
+  remove(id: number) {
+    return `This action removes a #${id} cat`;
   }
 }

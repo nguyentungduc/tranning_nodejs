@@ -1,22 +1,9 @@
-import { Global, Module } from '@nestjs/common';
-import { CatsController } from './cats.controller';
+import { Module } from '@nestjs/common';
 import { CatsService } from './cats.service';
+import { CatsController } from './cats.controller';
 
-const loggerAliasProvider = {
-    provide: 'AliasedCatsService',
-    useExisting: "CatsService",
-  };
-
-@Global()
 @Module({
   controllers: [CatsController],
-  providers: [
-    {
-      provide: "CatsService",
-      useClass: CatsService,
-    },
-    loggerAliasProvider
-  ],
-  exports: ["CatsService"],
+  providers: [CatsService],
 })
 export class CatsModule {}

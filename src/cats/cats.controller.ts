@@ -1,24 +1,42 @@
-import { Controller, Get, Inject } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { CatsService } from './cats.service';
-import { PostService } from 'src/post/post.service';
-import { ConfigService } from '@nestjs/config';
+import { CreateCatDto } from './dto/create-cat.dto';
+import { UpdateCatDto } from './dto/update-cat.dto';
+import { ApiHeader, ApiResponse, ApiTags } from '@nestjs/swagger';
 
+@ApiHeader({
+  name: 'X-MyHeader',
+  description: 'Custom header',
+})
+@ApiTags('cats')
 @Controller('cats')
+@ApiResponse({ status: 201, description: 'The record has been successfully created.'})
+@ApiResponse({ status: 403, description: 'Forbidden.'})
 export class CatsController {
-  constructor(
-    private readonly configService: ConfigService,
-    @Inject('CatsService') 
-    // @Inject('AliasedCatsService') 
-    private readonly catService: CatsService,
-    ) {}
+  constructor(private readonly catsService: CatsService) {}
+
+  @Post()
+  create(@Body() createCatDto: CreateCatDto) {
+    return this.catsService.create(createCatDto);
+  }
 
   @Get()
-  getHello(): string {
-    const port = this.configService.get<number>('port');
-    const postcodeRegex = this.configService.get<RegExp>('regex.postcode');
+  findAll() {
+    return this.catsService.findAll();
+  }
 
-    console.log(port, postcodeRegex);
-    return "aaa";
-    // return this.catService.getCat();
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.catsService.findOne(+id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateCatDto: UpdateCatDto) {
+    return this.catsService.update(+id, updateCatDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.catsService.remove(+id);
   }
 }
