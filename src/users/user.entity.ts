@@ -1,6 +1,4 @@
-import { Exclude, Expose, Transform } from 'class-transformer';
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
-import { RoleEntity } from './role.entity';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class User {
@@ -17,19 +15,6 @@ export class User {
   @Column()
   lastName: string;
 
-  @Expose()
-  get fullName(): string {
-    return `${this.firstName} ${this.lastName}`;
-  }
-
-  @Transform(({value}) => value.name )
-  role: RoleEntity 
-
-  @Exclude()
-  @Column()
-  password: string;
-
   @Column({ default: true })
   isActive: boolean;
-
 }
