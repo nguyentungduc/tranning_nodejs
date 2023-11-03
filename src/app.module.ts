@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Question } from './users/question.entity';
 import { User } from './users/user.entity';
 import { UsersModule } from './users/users.module';
+import 'dotenv/config';
 
 @Module({
   imports: [
@@ -14,7 +14,7 @@ import { UsersModule } from './users/users.module';
       username: 'root',
       password: 'mysql',
       database: 'test',
-      entities: [User, Question],
+      entities: [User],
       synchronize: true,
     }),
   ],

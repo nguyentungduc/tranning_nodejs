@@ -1,24 +1,39 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 import { User } from './user.entity';
 
 @Injectable()
 export class UsersService {
-  constructor(
-    @InjectRepository(User)
-    private usersRepository: Repository<User>,
-  ) {}
+  private users: User[] = [];
 
-  findAll(): Promise<User[]> {
-    return this.usersRepository.find();
+  getUsers(): User[] {
+    return this.users;
   }
 
-  findOne(id: number): Promise<User | null> {
-    return this.usersRepository.findOneBy({ id });
+  getUserById(id: number): User {
+    return this.users.find((user) => user.id === id);
   }
 
-  async remove(id: number): Promise<void> {
-    await this.usersRepository.delete(id);
+  createUser(user: User): User {
+    this.users.push(user);
+    return user;
+  }
+
+  updateUser(id: number, updatedUser: User): User {
+    const userIndex = this.users.findIndex((user) => user.id === id);
+    if (userIndex !== -1) {
+      this.users[userIndex] = { ...this.users[userIndex], ...updatedUser };
+      return this.users[userIndex];
+    }
+    return null;
+  }
+
+  deleteUser(id: number): User {
+    const userIndex = this.users.findIndex((user) => user.id === id);
+    if (userIndex !== -1) {
+      const deletedUser = this.users[userIndex];
+      this.users.splice(userIndex, 1);
+      return deletedUser;
+    }
+    return null;
   }
 }
