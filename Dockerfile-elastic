@@ -27,6 +27,6 @@ ENV xpack.ml.enabled: false
 
 RUN cd elasticsearch-6.5.3/bin
 RUN chown -R elasticuser: elasticsearch-6.5.3
-
+RUN cd elasticsearch-6.5.3/bin && ./elasticsearch-plugin install --batch http://es-learn-to-rank.labs.o19s.com/ltr-1.1.0-es6.5.3.zip
 EXPOSE 9200 9300
 CMD cd /usr/elasticsearch-6.5.3/bin/ && ./elasticsearch
