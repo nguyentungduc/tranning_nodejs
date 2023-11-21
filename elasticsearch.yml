@@ -1,0 +1,10 @@
+# elasticsearch.yml
+node.name: elasticsearch
+xpack.ml.enabled: false
+http.port: 9200
+http.host: 0.0.0.0
+network.host: 0.0.0.0
+transport.host: 127.0.0.1
+bootstrap.system_call_filter: true
+discovery.type: single-node
+
